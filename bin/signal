@@ -1,0 +1,14 @@
+#!/bin/bash
+
+mkdir -p $HOME/.config/Signal/
+
+docker run -it --rm \
+	-v /etc/localtime:/etc/localtime:ro \
+	-v /etc/hostname:/etc/hostname:ro \
+	-v /tmp/.X11-unix:/tmp/.X11-unix \
+	-v $XAUTHORITY:/home/ubuntu/.Xauthority \
+	-e "DISPLAY=unix${DISPLAY}" \
+	-v $HOME/.config/Signal/:/home/developer/.config/Signal/ \
+	--hostname $(hostname) \
+	--name signal \
+	nouchka/signal:latest

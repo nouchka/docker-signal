@@ -1,0 +1,4 @@
+sut:
+  build: .
+  entrypoint: signal-desktop
+  command: --no-sandbox
