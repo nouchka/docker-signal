@@ -24,9 +24,7 @@ jobs:
       -
         name: Set docker name
         run: |
-          echo ${{ github.repository }}
           DOCKER_NAME=$(echo ${{ github.repository }} | sed 's/docker\-//')
-          echo $DOCKER_NAME
           echo "DOCKER_NAME=$DOCKER_NAME" >> $GITHUB_ENV
       -
         name: Build and push
@@ -34,4 +32,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ github.repository_owner }}/${{ env.DOCKER_NAME }}:latest
+          tags: ${{ env.DOCKER_NAME }}:latest
