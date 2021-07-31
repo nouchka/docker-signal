@@ -21,11 +21,13 @@ jobs:
         with:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Set docker name
-      run: |
-        echo ${{ github.repository }}
-        echo $DOCKER_NAME
-        echo "DOCKER_NAME=$DOCKER_NAME" >> $GITHUB_ENV
+      -
+        name: Set docker name
+        run: |
+          echo ${{ github.repository }}
+          DOCKER_NAME=$(echo ${{ github.repository }} | sed 's/docker\-//')
+          echo $DOCKER_NAME
+          echo "DOCKER_NAME=$DOCKER_NAME" >> $GITHUB_ENV
       -
         name: Build and push
         id: docker_build
