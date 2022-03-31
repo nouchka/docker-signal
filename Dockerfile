@@ -6,8 +6,8 @@ ENV PUID ${PUID}
 ENV PGID ${PGID}
 
 ARG VERSION=5
-## MINOR_TAGS=5.36.0
-## LATEST_RELEASE=5.36.0
+## MINOR_TAGS=5.37.0
+## LATEST_RELEASE=5.37.0
 
 WORKDIR /tmp
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
