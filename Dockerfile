@@ -13,10 +13,10 @@ WORKDIR /tmp
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install wget=* tar=* ca-certificates=* gnupg=* && \
-	wget -O- https://updates.signal.org/desktop/apt/keys.asc | apt-key add - && \
+	wget -O- -q https://updates.signal.org/desktop/apt/keys.asc | apt-key add - && \
 	echo 'deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main' >/etc/apt/sources.list.d/signal-xenial.list && \
 	apt-get update && \
-	apt-get install -y signal-desktop=${VERSION}.* libx11-xcb1=* libxshmfence1=* libdrm2=* libgbm1=* && \
+	apt-get install -yq --no-install-recommends signal-desktop=${VERSION}.* libx11-xcb1=* libxshmfence1=* libdrm2=* libgbm1=* && \
 	chmod +x /usr/bin/signal-desktop && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
 	export uid=${PUID} gid=${PGID} && \
